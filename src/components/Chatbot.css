@@ -1,0 +1,329 @@
+.chatbot-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.chatbot-window {
+    width: 100%;
+    max-width: 650px;
+    height: 90vh;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--background);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.chatbot-header {
+    padding: 0.75rem 1.5rem;
+    background: var(--surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bot-avatar {
+    width: 40px;
+    height: 40px;
+    background: #374045;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+}
+
+.chatbot-header h3 {
+    font-size: 1rem;
+    color: white;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.status {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.messages-container {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background-color: #0b141a;
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-blend-mode: overlay;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.safety-alert {
+    align-self: center;
+    background: #182229;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.7rem;
+    color: #ffd279;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.message-wrapper {
+    width: 100%;
+}
+
+.message-wrapper.bot {
+    justify-content: flex-start;
+}
+
+.message-wrapper.user {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.bubble {
+    max-width: 85%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    position: relative;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.bot .bubble {
+    background: #202c33;
+    color: #e9edef;
+    border-top-left-radius: 0;
+}
+
+.user .bubble {
+    background: #005c4b;
+    color: #e9edef;
+    border-top-right-radius: 0;
+}
+
+.timestamp {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    align-self: flex-end;
+    margin-top: 0.25rem;
+}
+
+.typing {
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.structured-results {
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.entity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pill {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    background: #111b21;
+    border-radius: 4px;
+    color: #e9edef;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.analysis-section {
+    margin-bottom: 1rem;
+}
+
+.analysis-section h4 {
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.code-block {
+    background: #111b21;
+    color: #00a884;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+.fir-container {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.fir-draft {
+    background: #111b21;
+    border: 1px solid #374045;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #e9edef;
+    white-space: pre-wrap;
+    font-family: inherit;
+    line-height: 1.5;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.copy-btn {
+    background: #005c4b;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.copy-btn:hover {
+    background: #00a884;
+}
+
+.analysis-section ul,
+.analysis-section ol {
+    padding-left: 1.25rem;
+    color: #8696a0;
+    font-size: 0.85rem;
+}
+
+.emergency {
+    background: #3c1414 !important;
+    border-color: #5a1e1e !important;
+}
+
+.res-pill {
+    background: #ea5656;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+}
+
+.disclaimer-boxed {
+    font-size: 0.75rem;
+    color: #8696a0;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+}
+
+.chatbot-footer {
+    padding: 0.5rem 1rem 1rem;
+    background: #111b21;
+}
+
+.quick-buttons {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.q-btn {
+    background: #202c33;
+    border: 1px solid var(--border);
+    color: #86b6a0;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.q-btn:hover {
+    background: #2a3942;
+    border-color: #8696a0;
+}
+
+.input-area {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+}
+
+.input-area textarea {
+    flex: 1;
+    background: #2a3942;
+    border-radius: 1.5rem;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    resize: none;
+    height: 45px;
+    font-family: inherit;
+}
+
+.send-btn {
+    width: 45px;
+    height: 45px;
+    background: var(--primary);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.q-item {
+    color: var(--primary);
+    padding: 5px 0;
+    display: block;
+}
+
+.urgent-alert {
+    text-align: center;
+    padding: 1rem;
+}
+
+.alert-btn {
+    background: #ea5656;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
