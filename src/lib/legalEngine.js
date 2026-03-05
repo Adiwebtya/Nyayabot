@@ -190,6 +190,34 @@ export const analyzeIncident = async (description, history = []) => {
             text.includes('home') || text.includes('house') ? "Residence" : "Public/Unknown";
     const severity = text.includes('hurt') || text.includes('severe') || text.includes('threat') ? "High" : "Medium";
 
+    // Prepare entities for the UI
+    const entities = {
+        victim,
+        offender,
+        location,
+        severity
+    };
+
+    // Generate FIR Draft
+    const firDraft = `
+Subject: Complaint regarding ${primaryCategory}
+
+To,
+The Officer-in-Charge,
+${location === 'Public/Unknown' ? '[Name of Police Station]' : location + ' Police Station'},
+
+I, ${victim === 'Likely User' ? '[Your Name]' : victim}, resident of [Your Address], would like to report an incident of ${primaryCategory}.
+
+The incident occurred on [Date/Time] at ${location === 'Public/Unknown' ? '[Exact Location]' : location}.
+Description of events: ${description}
+
+I request the police authorities to kindly register my complaint under the relevant legal sections, including ${mappings.sections}, and take appropriate legal action.
+
+Yours sincerely,
+${victim === 'Likely User' ? '[Your Name]' : victim}
+[Contact Details]
+    `.trim();
+
     return {
         type: 'ANALYSIS',
         summary: isHindiHinglish
@@ -197,11 +225,16 @@ export const analyzeIncident = async (description, history = []) => {
             : `Based on your description, this incident appears to be a case of **${primaryCategory}**. I have extracted the details and mapped them to the relevant Indian laws.`,
         details: {
             entities,
-            sections: legalSections,
+            sections: mappings.sections,
             meaning: mappings.meaning,
-            evidence: evidenceSuggestions,
-            steps: legalSteps,
-            resources: emergencyResources,
+            evidence: mappings.evidence,
+            steps: [
+                "Immediately secure any physical or digital evidence.",
+                "Note down the names and contact details of any witnesses.",
+                "Visit the nearest police station with the generated FIR draft.",
+                "Ensure you receive an acknowledgment or a copy of the FIR."
+            ],
+            resources: mappings.helpline,
             firDraft: firDraft
         },
         disclaimer: isHindiHinglish
